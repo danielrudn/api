@@ -1,0 +1,66 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "id": "11111111-111-11111111",
+      "username": "tester",
+      "email": "test@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "22222222-222-22222222",
+      "username": "tester2",
+      "email": "test2@ripple.fm",
+      "password": "password",
+      "activated": false,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "unactivated",
+      "username": "unactivated",
+      "email": "inactive@ripple.fm",
+      "password": "password",
+      "activated": false,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "refresh",
+      "username": "refresh",
+      "email": "refresh@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "reset",
+      "username": "reset",
+      "email": "reset@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "guest_1111",
+      "username": "guest_1111",
+      "activated": false,
+      "isGuest": true
+    }
+  }
+]

@@ -6,10 +6,15 @@ services:
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=secret"
       - "POSTGRES_DB=ripple_api"
+      
+  redis:
+    image: redis
 
   api:
     build: .
-    command: npm run dev
+    links:
+      - redis
+      - postgres
     ports:
       - "3000:3000"
     volumes:
@@ -19,3 +24,5 @@ services:
       - "POSTGRES_PASSWORD=secret"
       - "POSTGRES_DB=ripple_api"
       - "POSTGRES_HOST=postgres"
+      - "REDIS_HOST=redis"
+      - "JWT_SECRET=secret"

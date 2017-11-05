@@ -6,27 +6,37 @@ export default function HttpError(msg, status) {
 }
 
 export function BadRequestError(msg) {
-  this.statusCode = 400;
-  this.message = msg;
+  return new HttpError(msg, 400);
 }
 
 export function BadCredentialsError(msg) {
-  this.statusCode = 401;
-  this.message = msg;
+  return new HttpError(msg, 401);
+}
+
+export function BadTokenError() {
+  return new BadCredentialsError(
+    "The token provided has either expired or doesn't exist."
+  );
+}
+
+export function BadUserCredentialsError() {
+  return new BadCredentialsError('Username/email or password is incorrect.');
+}
+
+export function AccountNotActivatedError() {
+  return new BadCredentialsError('Account is not activated.');
 }
 
 export function ForbiddenError(msg) {
-  this.statusCode = 403;
-  this.message = msg;
+  return new HttpError(msg, 403);
 }
 
 export function NotFoundError(msg) {
-  this.statusCode = 404;
-  this.message = msg;
+  return new HttpError(msg, 404);
+}
+
+export function RoomNotFoundError() {
+  return new NotFoundError('Room with given id not found.');
 }
 
 util.inherits(HttpError, Error);
-util.inherits(BadRequestError, HttpError);
-util.inherits(BadCredentialsError, HttpError);
-util.inherits(ForbiddenError, HttpError);
-util.inherits(NotFoundError, HttpError);

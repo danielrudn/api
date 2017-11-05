@@ -4,12 +4,12 @@ import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize(
   process.env.POSTGRES_DB,
-  process.env.POSTGRES_USERNAME,
+  process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD,
   {
     dialect: 'postgres',
     host: process.env.POSTGRES_HOST,
-    underscored: true
+    logging: process.env.NODE_ENV === 'development' ? console.log : undefined
   }
 );
 
@@ -28,8 +28,6 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
-sequelize.sync();
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
