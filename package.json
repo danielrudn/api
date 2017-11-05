@@ -1,0 +1,16 @@
+{
+  "name": "ripple-api",
+  "version": "1.0.0",
+  "description": "API for ripple.fm",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node --presets=env src"
+  },
+  "author": "Daniel Rudnitski",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "prettier": "^1.7.4"
+  }
+}
