@@ -1,0 +1,21 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:10.0
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=secret"
+      - "POSTGRES_DB=ripple_api"
+
+  api:
+    build: .
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/usr/app"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=secret"
+      - "POSTGRES_DB=ripple_api"
+      - "POSTGRES_HOST=postgres"
