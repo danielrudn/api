@@ -1,0 +1,123 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "id": "room_creator_1",
+      "username": "room_creator_1",
+      "email": "rc1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "123456",
+      "name": "Room 1",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "2222222",
+      "name": "Room 2",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "3333333",
+      "name": "Room 3",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "444444",
+      "name": "Room 4",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "555555",
+      "name": "Room 5",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "666666",
+      "name": "Room 6",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "777777",
+      "name": "Room 7",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "888888",
+      "name": "Room 8",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "room_creator_1"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "room_creator_2",
+      "username": "room_creator_2",
+      "email": "rc2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "private",
+      "name": "Private Room",
+      "playType": "public",
+      "accessType": "private",
+      "city": "Toronto",
+      "creatorId": "room_creator_2"
+    }
+  }
+]

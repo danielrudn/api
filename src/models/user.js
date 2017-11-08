@@ -87,5 +87,18 @@ export default function(sequelize, DataTypes) {
     return bcrypt.compare(password, this.password);
   };
 
+  User.associate = models => {
+    User.belongsToMany(models.Room, {
+      through: 'room_users',
+      as: 'users',
+      timestamps: false
+    });
+    User.belongsToMany(models.Room, {
+      through: 'room_followers',
+      as: 'followers',
+      timestamps: false
+    });
+  };
+
   return User;
 }

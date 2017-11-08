@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
+// postgres parseInt hack to turn count(*) into integer rather than string
+import pg from 'pg';
+pg.defaults.parseInt8 = true;
 
 const sequelize = new Sequelize(
   process.env.POSTGRES_DB,

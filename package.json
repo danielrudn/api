@@ -7,7 +7,7 @@
     "start": "babel-node --presets=env src",
     "dev": "nodemon --exec babel-node --presets=env src",
     "test":
-      "NODE_ENV=test POSTGRES_DB=ripple_test mocha ./test --recursive --require babel-register --require babel-polyfill --exit"
+      "NODE_ENV=test POSTGRES_DB=ripple_test mocha ./test --recursive --require babel-register --require babel-polyfill --exit --timeout 10000"
   },
   "author": "Daniel Rudnitski",
   "license": "ISC",

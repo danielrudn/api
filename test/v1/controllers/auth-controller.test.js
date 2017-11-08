@@ -1,25 +1,13 @@
 import mocha from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import sequelizeFixtures from 'sequelize-fixtures';
 import server from '../../../src/index.js';
-import models from '../../../src/models';
 import seed from '../../../fixtures/seed';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe('AuthController', function() {
-  before(function(done) {
-    // for safety
-    if (process.env.NODE_ENV === 'test') {
-      models.sequelize
-        .drop()
-        .then(() => models.sequelize.sync())
-        .then(() => sequelizeFixtures.loadFile('fixtures/*.json', models))
-        .then(() => done());
-    }
-  });
   describe('POST /auth', function() {
     it('should create a guest user', async function() {
       const res = await chai.request(server).post('/v1/auth');

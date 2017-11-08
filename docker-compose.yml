@@ -3,9 +3,9 @@ services:
   postgres:
     image: postgres:10.0
     environment:
-      - "POSTGRES_USER=postgres"
-      - "POSTGRES_PASSWORD=secret"
-      - "POSTGRES_DB=ripple_api"
+      - "POSTGRES_USER"
+      - "POSTGRES_PASSWORD"
+      - "POSTGRES_DB"
       
   redis:
     image: redis
@@ -20,9 +20,9 @@ services:
     volumes:
       - "./:/usr/app"
     environment:
-      - "POSTGRES_USER=postgres"
-      - "POSTGRES_PASSWORD=secret"
-      - "POSTGRES_DB=ripple_api"
       - "POSTGRES_HOST=postgres"
       - "REDIS_HOST=redis"
-      - "JWT_SECRET=secret"
+      - "POSTGRES_USER"
+      - "POSTGRES_PASSWORD"
+      - "POSTGRES_DB"
+      - "JWT_SECRET"
