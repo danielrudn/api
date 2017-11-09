@@ -17,11 +17,14 @@ services:
       - postgres
     ports:
       - "3000:3000"
+    command: npm run dev
     volumes:
       - "./:/usr/app"
+      - "/usr/app/node_modules"
     environment:
       - "POSTGRES_HOST=postgres"
       - "REDIS_HOST=redis"
+      - "NODE_ENV"
       - "POSTGRES_USER"
       - "POSTGRES_PASSWORD"
       - "POSTGRES_DB"

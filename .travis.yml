@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+  - docker
+
+language: node_js
+
+env:
+  POSTGRES_USER=postgres
+  POSTGRES_PASSWORD=secret
+  POSTGRES_DB=ripple_test
+  NODE_ENV=test
+  JWT_SECRET=secret
+
+before_install:
+  - docker-compose build
+
+script:
+  - docker-compose run api npm run test
