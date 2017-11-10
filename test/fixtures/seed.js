@@ -1,5 +1,5 @@
-import models from '../src/models';
-import TokenService from '../src/v1/services/token-service';
+import models from '../../src/models';
+import TokenService from '../../src/v1/services/token-service';
 
 const activationToken = TokenService.signOneUseToken({ id: 'activateme' });
 const resetToken = TokenService.signOneUseToken({ id: 'reset' });

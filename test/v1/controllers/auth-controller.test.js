@@ -2,7 +2,7 @@ import mocha from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../../src/index.js';
-import seed from '../../../fixtures/seed';
+import seed from '../../fixtures/seed';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
