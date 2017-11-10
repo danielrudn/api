@@ -27,6 +27,16 @@ const guestAccessToken = TokenService.signToken(
   '30m'
 );
 
+const followAccessToken = TokenService.signToken(
+  { id: 'follow_creator', username: 'follow' },
+  '30m'
+);
+
+const unfollowAccessToken = TokenService.signToken(
+  { id: 'unfollow_creator', username: 'unfollow' },
+  '30m'
+);
+
 export default {
   activationToken,
   resetToken,
@@ -35,5 +45,7 @@ export default {
   oldRefreshToken,
   accessToken,
   unactivatedAccessToken,
-  guestAccessToken
+  guestAccessToken,
+  followAccessToken,
+  unfollowAccessToken
 };

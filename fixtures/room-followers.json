@@ -1,0 +1,56 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "id": "follow_creator",
+      "username": "follow",
+      "email": "follow_creator@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "follow-test",
+      "name": "Follow Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "follow_creator",
+      "followers": [
+        {
+          "id": "follow_creator"
+        }
+      ]
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "unfollow_creator",
+      "username": "unfollow",
+      "email": "unfollow_creator@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "unfollow-test",
+      "name": "Unfollow Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "unfollow_creator",
+      "followers": [
+        {
+          "id": "unfollow_creator"
+        }
+      ]
+    }
+  }
+]
