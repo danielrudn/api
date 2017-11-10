@@ -526,7 +526,7 @@ describe('AuthController', function() {
         const res = await chai
           .request(server)
           .get('/v1/auth/me')
-          .set('Authorization', `Bearer ${seed.unactivatedAccessToken}`);
+          .set('Authorization', `Bearer ${seed.userTokens['unactivated']}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(401);

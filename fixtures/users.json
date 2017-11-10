@@ -13,8 +13,8 @@
   {
     "model": "User",
     "data": {
-      "id": "22222222-222-22222222",
-      "username": "tester2",
+      "id": "unactivated",
+      "username": "unactivated",
       "email": "test2@ripple.fm",
       "password": "password",
       "activated": false,
@@ -24,8 +24,8 @@
   {
     "model": "User",
     "data": {
-      "id": "unactivated",
-      "username": "unactivated",
+      "id": "activateme",
+      "username": "activateme",
       "email": "inactive@ripple.fm",
       "password": "password",
       "activated": false,
