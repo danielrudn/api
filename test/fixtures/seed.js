@@ -1,6 +1,7 @@
-import TokenService from '../src/v1/services/token-service';
+import models from '../../src/models';
+import TokenService from '../../src/v1/services/token-service';
 
-const activationToken = TokenService.signOneUseToken({ id: 'unactivated' });
+const activationToken = TokenService.signOneUseToken({ id: 'activateme' });
 const resetToken = TokenService.signOneUseToken({ id: 'reset' });
 const refreshToken = TokenService.signOneUseToken(
   { id: 'refresh' },
@@ -17,25 +18,23 @@ const accessToken = TokenService.signToken(
   { id: '11111111-111-11111111', username: 'tester' },
   '30m'
 );
-const unactivatedAccessToken = TokenService.signToken(
-  { id: '22222222-222-22222222', username: 'tester2' },
-  '30m'
-);
-
 const guestAccessToken = TokenService.signToken(
   { id: 'guest_1111', username: 'guest_1111' },
   '30m'
 );
 
-const followAccessToken = TokenService.signToken(
-  { id: 'follow_creator', username: 'follow' },
-  '30m'
-);
+let userTokens = {};
 
-const unfollowAccessToken = TokenService.signToken(
-  { id: 'unfollow_creator', username: 'unfollow' },
-  '30m'
-);
+export const initTokens = async () => {
+  const users = await models.User.findAll();
+  users.forEach(user => {
+    const access = TokenService.signToken(
+      { id: user.id, username: user.username },
+      '30m'
+    );
+    userTokens[user.id] = access;
+  });
+};
 
 export default {
   activationToken,
@@ -44,8 +43,6 @@ export default {
   refreshToken2,
   oldRefreshToken,
   accessToken,
-  unactivatedAccessToken,
   guestAccessToken,
-  followAccessToken,
-  unfollowAccessToken
+  userTokens
 };

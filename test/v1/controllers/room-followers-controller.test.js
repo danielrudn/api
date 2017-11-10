@@ -2,7 +2,7 @@ import mocha from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../../src/index.js';
-import seed from '../../../fixtures/seed';
+import seed from '../../fixtures/seed';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -23,7 +23,7 @@ describe('RoomFollowersController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms/follow-test/followers')
-          .set('Authorization', `Bearer ${seed.followAccessToken}`);
+          .set('Authorization', `Bearer ${seed.userTokens['follow_creator']}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(400);
@@ -80,7 +80,7 @@ describe('RoomFollowersController', function() {
       const res = await chai
         .request(server)
         .del('/v1/rooms/unfollow-test/followers')
-        .set('Authorization', `Bearer ${seed.unfollowAccessToken}`);
+        .set('Authorization', `Bearer ${seed.userTokens['unfollow_creator']}`);
       expect(res.status).to.eql(204);
       expect(res.body).to.be.empty;
     });

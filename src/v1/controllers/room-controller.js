@@ -8,13 +8,14 @@ import RoomService from '../services/room-service';
 
 const roomRouter = Router();
 
-roomRouter.use(
-  '/:id*',
-  wrap(async (req, res, next) => {
-    req.room = await RoomService.findById(req.params.id);
-    next();
-  })
-);
+roomRouter.param('id', (req, res, next, id) => {
+  RoomService.findById(id)
+    .then(room => {
+      req.room = room;
+      next();
+    })
+    .catch(err => next(err));
+});
 
 roomRouter.use('/:id/followers', followers);
 
