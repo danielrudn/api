@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { BadRequestError } from '../errors';
 import wrap from '../../wrap';
 import followers from './room-followers-controller';
+import queue from './room-queue-controller';
 import { authenticate } from './auth-controller';
 import verifyPagination from '../utils/verify-pagination';
 import RoomService from '../services/room-service';
@@ -18,6 +19,7 @@ roomRouter.param('id', (req, res, next, id) => {
 });
 
 roomRouter.use('/:id/followers', followers);
+roomRouter.use('/:id/queue', queue);
 
 roomRouter.get(
   '/',
