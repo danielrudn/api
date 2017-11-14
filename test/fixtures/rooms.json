@@ -117,6 +117,13 @@
       "playType": "public",
       "accessType": "private",
       "city": "Toronto",
+      "currentTrack": {
+        "url": "https://youtube.com",
+        "dj": {
+          "id": "room_creator_2"
+        }
+      },
+      "queue": [{ "url": "", "dj": { "id": "room_creator_2" } }],
       "creatorId": "room_creator_2"
     }
   }

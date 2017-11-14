@@ -7,7 +7,6 @@ class SoundCloudService {
     const response = await axios.get(
       `https://api.soundcloud.com/resolve?url=${url.toString()}&client_id=${SOUNDCLOUD_API_KEY}`
     );
-    console.log('sc data', response.data);
     const { data } = response;
     return {
       title: data.title,

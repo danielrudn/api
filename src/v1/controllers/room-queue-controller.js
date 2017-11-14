@@ -14,9 +14,9 @@ queueRouter.post(
     const track = await TrackService.fetchTrack(url);
     track.dj = { id: req.user.id, username: req.user.username };
     if (req.room.currentTrack === null) {
-      TrackService.playTrack(req.room, track);
+      await TrackService.playTrack(req.room, track);
     } else {
-      QueueService.addTrack(req.room, track);
+      await QueueService.addTrack(req.room, track);
     }
     res.status(201).json(await QueueService.getQueue(req.room, req.user));
   })

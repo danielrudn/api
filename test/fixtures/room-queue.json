@@ -1,0 +1,200 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "id": "queue_creator",
+      "username": "queue",
+      "email": "queue_creator@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "queue-test",
+      "name": "Queue Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "queue_creator"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "queue_creator_sc",
+      "username": "queue-sc",
+      "email": "queue_creator_sc@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "queue-test-sc",
+      "name": "Queue Test SC",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "queue_creator_sc"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "queue_creator2",
+      "username": "queue2",
+      "email": "queue2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "queue-test-2",
+      "name": "Queue Test 2",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "currentTrack": {
+        "title": "some track",
+        "url": "https://youtube.com/",
+        "duration": 35155
+      },
+      "creatorId": "queue_creator2"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "queue_creator2_sc",
+      "username": "queue2-sc",
+      "email": "queue2_sc@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "queue-test-2-sc",
+      "name": "Queue Test 2 SC",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "currentTrack": {
+        "title": "some track",
+        "url": "https://soundcloud.com/",
+        "duration": 35155
+      },
+      "creatorId": "queue_creator2_sc"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "has_queue",
+      "username": "has_queue",
+      "email": "has_queue@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "has-queue-test",
+      "name": "Has Queue Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "currentTrack": {
+        "title": "some track",
+        "url": "https://soundcloud.com/",
+        "duration": 35155
+      },
+      "queue": [{ "url": "https://youtube.com", "dj": { "id": "has_queue" } }],
+      "creatorId": "has_queue"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "track_duration",
+      "username": "track_duration",
+      "email": "track_duration@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "track-duration-test",
+      "name": "Track Duration Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "track_duration"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "delete_test1",
+      "username": "delete_test1",
+      "email": "delete_test1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "delete-test1",
+      "name": "Track Duration Test",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "queue": [{ "url": "", "dj": { "id": "delete_test1" } }],
+      "creatorId": "delete_test1"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "delete_test2",
+      "username": "delete_test2",
+      "email": "delete_test2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "delete-test2",
+      "name": "Track Duration Test 2",
+      "playType": "public",
+      "accessType": "public",
+      "city": "Toronto",
+      "queue": [
+        { "url": "", "dj": { "id": "delete_test1" } },
+        { "url": "", "dj": { "id": "delete_test2" } },
+        { "url": "", "dj": { "id": "delete_test1" } }
+      ],
+      "creatorId": "delete_test2"
+    }
+  }
+]

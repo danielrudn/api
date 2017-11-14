@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import models from '../../src/models';
 import TokenService from '../../src/v1/services/token-service';
+import RedisService from '../../src/v1/services/redis-service';
 
 let tokens = {},
   userTokens = {};
@@ -42,8 +43,30 @@ const initTokens = async () => {
   });
 };
 
+const initRoomQueues = async () => {
+  fs
+    .readdirSync(path.join(__dirname, '../fixtures/'))
+    .filter(file => file.endsWith('.json'))
+    .map(fixtureFile =>
+      fs.readFileSync(path.join(__dirname, '../fixtures', fixtureFile), 'utf8')
+    )
+    .map(str => JSON.parse(str))
+    .forEach(fixture => {
+      fixture
+        .filter(data => data.model === 'Room')
+        .map(data => data.data)
+        .filter(room => room.queue !== undefined)
+        .forEach(async room => {
+          for (let track of room.queue) {
+            await RedisService.rpush(`rooms:${room.id}:queue`, track);
+          }
+        });
+    });
+};
+
 export const init = async () => {
   await initTokens();
+  await initRoomQueues();
 };
 
 export default {
