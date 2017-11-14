@@ -213,7 +213,7 @@ describe('AuthController', function() {
       const res = await chai
         .request(server)
         .post('/v1/auth/activate')
-        .send({ token: seed.activationToken });
+        .send({ token: seed.tokens.activationToken });
       expect(res.status).to.eql(200);
       expect(res.body).to.have.property('user');
       expect(res.body).to.have.property('accessToken');
@@ -335,12 +335,12 @@ describe('AuthController', function() {
       const res = await chai
         .request(server)
         .post('/v1/auth/refresh')
-        .send({ refreshToken: seed.refreshToken });
+        .send({ refreshToken: seed.tokens.refreshToken });
       expect(res.status).to.eql(200);
       expect(res.body).to.have.property('user');
       expect(res.body).to.have.property('accessToken');
       expect(res.body).to.have.property('refreshToken');
-      expect(res.body.refreshToken).to.not.eql(seed.refreshToken);
+      expect(res.body.refreshToken).to.not.eql(seed.tokens.refreshToken);
       expect(res.body.user).to.have.property('id');
       expect(res.body.user).to.have.property('email');
       expect(res.body.user).to.have.property('username');
@@ -350,7 +350,7 @@ describe('AuthController', function() {
         const res = await chai
           .request(server)
           .post('/v1/auth/refresh')
-          .send({ refreshToken: seed.oldRefreshToken });
+          .send({ refreshToken: seed.tokens.oldRefreshToken });
         throw res;
       } catch (err) {
         expect(err.status).to.eql(401);
@@ -415,7 +415,7 @@ describe('AuthController', function() {
     it('should successfully reset a users password and login with new password', async function() {
       const res = await chai
         .request(server)
-        .post(`/v1/auth/reset/${seed.resetToken}`)
+        .post(`/v1/auth/reset/${seed.tokens.resetToken}`)
         .send({ password: 'passwordnew' });
       expect(res.status).to.eql(200);
       expect(res.body).to.have.property('message');
@@ -435,7 +435,7 @@ describe('AuthController', function() {
       try {
         const res = await chai
           .request(server)
-          .post(`/v1/auth/reset/${seed.refreshToken2}`)
+          .post(`/v1/auth/reset/${seed.tokens.refreshToken2}`)
           .send({ password: 's' });
         throw res;
       } catch (err) {
@@ -468,7 +468,7 @@ describe('AuthController', function() {
       const res = await chai
         .request(server)
         .get('/v1/auth/me')
-        .set('Authorization', `Bearer ${seed.accessToken}`);
+        .set('Authorization', `Bearer ${seed.tokens.accessToken}`);
       expect(res.status).to.eql(200);
       expect(res.body).to.have.property('email');
       expect(res.body.email).to.eql('test@ripple.fm');
@@ -484,7 +484,7 @@ describe('AuthController', function() {
       const res = await chai
         .request(server)
         .get('/v1/auth/me')
-        .set('Authorization', `Bearer ${seed.guestAccessToken}`);
+        .set('Authorization', `Bearer ${seed.tokens.guestAccessToken}`);
       expect(res.status).to.eql(200);
       expect(res.body).to.have.property('username');
       expect(res.body.username).to.eql('guest_1111');

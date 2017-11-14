@@ -27,6 +27,11 @@ describe('RoomController', function() {
         expect(room).to.have.property('numUsers');
         expect(room).to.have.property('followers');
         expect(room).to.have.property('creator');
+        expect(room).to.have.property('queueLength');
+        expect(room.creator).to.have.property('id');
+        expect(room.creator).to.have.property('username');
+        expect(room.creator).to.not.have.property('password');
+        expect(room.creator).to.not.have.property('email');
       });
     });
     it('should get all rooms with a valid limit', async function() {
@@ -108,15 +113,19 @@ describe('RoomController', function() {
       expect(res.body.accessType).to.eql('private');
       expect(res.body).to.have.property('playType');
       expect(res.body).to.have.property('currentTrack');
+      expect(res.body.currentTrack).to.not.be.null;
       expect(res.body).to.have.property('users');
       expect(res.body.users).to.be.empty;
       expect(res.body).to.have.property('followers');
       expect(res.body.followers).to.eql(0);
       expect(res.body).to.have.property('creator');
+      expect(res.body).to.have.property('queue');
+      expect(res.body.queue.length).to.eql(1);
+      expect(res.body.queue[0]).to.eql({ id: 'room_creator_2' });
     });
     it('should fail to get a non-existent room', async function() {
       try {
-        const res = await chai.request(server).get('/v1/rooms/nothinghere');
+        const res = await chai.request(server).get('/v1/rooms/nothing-here');
         throw res;
       } catch (err) {
         expect(err.status).to.eql(404);
@@ -131,7 +140,7 @@ describe('RoomController', function() {
       const res = await chai
         .request(server)
         .post('/v1/rooms')
-        .set('Authorization', `Bearer ${seed.accessToken}`)
+        .set('Authorization', `Bearer ${seed.tokens.accessToken}`)
         .send({
           name: 'My Test Room',
           accessType: 'public',
@@ -172,7 +181,7 @@ describe('RoomController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms')
-          .set('Authorization', `Bearer ${seed.accessToken}`)
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`)
           .send({
             name: '',
             accessType: 'public',
@@ -192,7 +201,7 @@ describe('RoomController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms')
-          .set('Authorization', `Bearer ${seed.accessToken}`)
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`)
           .send({
             name: 'thisisareallyreallyreallyreallyreallyreallylongname',
             accessType: 'public',
@@ -212,7 +221,7 @@ describe('RoomController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms')
-          .set('Authorization', `Bearer ${seed.accessToken}`)
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`)
           .send({
             name: 'Valid',
             accessType: 'no',
@@ -232,7 +241,7 @@ describe('RoomController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms')
-          .set('Authorization', `Bearer ${seed.accessToken}`)
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`)
           .send({
             name: 'Valid',
             accessType: 'public',

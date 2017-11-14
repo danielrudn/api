@@ -5,6 +5,18 @@ class RedisService {
     this.redis = redis.createClient({ host: process.env.REDIS_HOST });
   }
 
+  flushall() {
+    return new Promise((resolve, reject) => {
+      this.redis.flushall((err, res) => {
+        if (err) {
+          reject();
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
   set(key, value, expiration) {
     if (expiration) {
       this.redis.set(key, JSON.stringify(value), 'EX', expiration);

@@ -13,7 +13,7 @@ describe('RoomFollowersController', function() {
       const res = await chai
         .request(server)
         .post('/v1/rooms/follow-test/followers')
-        .set('Authorization', `Bearer ${seed.accessToken}`);
+        .set('Authorization', `Bearer ${seed.tokens.accessToken}`);
       expect(res.status).to.eql(201);
       expect(res.body).to.have.property('id');
       expect(res.body.id).to.eql('follow-test');
@@ -36,7 +36,7 @@ describe('RoomFollowersController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms/follow-test/followers')
-          .set('Authorization', `Bearer ${seed.guestAccessToken}`);
+          .set('Authorization', `Bearer ${seed.tokens.guestAccessToken}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(401);
@@ -65,7 +65,7 @@ describe('RoomFollowersController', function() {
         const res = await chai
           .request(server)
           .post('/v1/rooms/nothing-here/followers')
-          .set('Authorization', `Bearer ${seed.accessToken}`);
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(404);
@@ -89,7 +89,7 @@ describe('RoomFollowersController', function() {
         const res = await chai
           .request(server)
           .del('/v1/rooms/unfollow-test/followers')
-          .set('Authorization', `Bearer ${seed.guestAccessToken}`);
+          .set('Authorization', `Bearer ${seed.tokens.guestAccessToken}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(400);
@@ -116,7 +116,7 @@ describe('RoomFollowersController', function() {
         const res = await chai
           .request(server)
           .del('/v1/rooms/nothing-here/followers')
-          .set('Authorization', `Bearer ${seed.accessToken}`);
+          .set('Authorization', `Bearer ${seed.tokens.accessToken}`);
         throw res;
       } catch (err) {
         expect(err.status).to.eql(404);
