@@ -6,8 +6,7 @@
   "scripts": {
     "start": "babel-node --presets=env src",
     "dev": "nodemon --exec babel-node --presets=env src",
-    "test":
-      "NODE_ENV=test POSTGRES_DB=ripple_test mocha ./test --recursive --require babel-register --require babel-polyfill --exit --timeout 10000"
+    "test": "NODE_ENV=test POSTGRES_DB=ripple_test mocha ./test --recursive --require babel-register --require babel-polyfill --exit --timeout 10000"
   },
   "author": "Daniel Rudnitski",
   "license": "ISC",
@@ -23,8 +22,10 @@
     "sequelize-fixtures": "^0.6.0"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "dtimer": "^0.3.2",
     "express": "^4.16.2",
     "express-fingerprint": "^1.1.1",
     "geoip-lite": "^1.2.1",

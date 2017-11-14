@@ -1,16 +1,18 @@
 import mocha from 'mocha';
+import RedisService from '../src/v1/services/redis-service';
 import sequelizeFixtures from 'sequelize-fixtures';
 import models from '../src/models';
-import seed, { initTokens } from './fixtures/seed';
+import { init } from './fixtures/seed';
 
 describe('Test Setup', function() {
   it('should set up & seed database', function(done) {
     if (process.env.NODE_ENV === 'test') {
       models.sequelize
-        .drop()
+        .drop({ cascade: true })
+        .then(() => RedisService.flushall())
         .then(() => models.sequelize.sync())
         .then(() => sequelizeFixtures.loadFile('test/fixtures/*.json', models))
-        .then(() => initTokens())
+        .then(() => init())
         .then(() => done());
     } else {
       throw Error(

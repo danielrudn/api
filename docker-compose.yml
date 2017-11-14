@@ -29,3 +29,6 @@ services:
       - "POSTGRES_PASSWORD"
       - "POSTGRES_DB"
       - "JWT_SECRET"
+      - "YOUTUBE_API_KEY"
+      - "SOUNDCLOUD_API_KEY"
+      
