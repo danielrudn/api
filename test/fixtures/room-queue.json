@@ -196,5 +196,27 @@
       ],
       "creatorId": "delete_test2"
     }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "playtype-test",
+      "username": "playtype-test",
+      "email": "playtype-test@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Room",
+    "data": {
+      "id": "play-type-test",
+      "name": "Private Play Type Test",
+      "playType": "private",
+      "accessType": "public",
+      "city": "Toronto",
+      "creatorId": "playtype-test"
+    }
   }
 ]

@@ -110,6 +110,31 @@ describe('RoomQueueController', function() {
           }, 5000);
         });
     });
+    it('should successfully allow the owner to play a track in a room with private play type', async function() {
+      const res = await chai
+        .request(server)
+        .post('/v1/rooms/play-type-test/queue')
+        .set('Authorization', `Bearer ${seed.userTokens['playtype-test']}`)
+        .send({ url: 'https://www.youtube.com/watch?v=B7bqAsxee4I' });
+      expect(res.status).to.eql(201);
+      expect(res.body).to.eql([]);
+    });
+    it('should deny ability to play track in a room with private play type', async function() {
+      try {
+        const res = await chai
+          .request(server)
+          .post('/v1/rooms/play-type-test/queue')
+          .set('Authorization', `Bearer ${seed.tokens.guestAccessToken}`)
+          .send({ url: 'https://www.youtube.com/watch?v=B7bqAsxee4I' });
+        throw res;
+      } catch (err) {
+        expect(err.status).to.eql(403);
+        expect(err.response.body).to.have.property('error');
+        expect(err.response.body.error).to.eql(
+          'Room play type is set to private. Only the creator can play.'
+        );
+      }
+    });
     it('should fail to add track for non-existent room', async function() {
       try {
         const res = await chai
