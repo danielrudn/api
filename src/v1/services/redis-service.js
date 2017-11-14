@@ -132,6 +132,22 @@ class RedisService {
       });
     });
   }
+
+  deleteFromList(key, index) {
+    return new Promise((resolve, reject) => {
+      this.redis
+        .multi()
+        .lset(key, index, 'DELETE')
+        .lrem(key, 0, 'DELETE')
+        .exec((err, res) => {
+          if (err) {
+            reject();
+          } else {
+            resolve();
+          }
+        });
+    });
+  }
 }
 
 export default new RedisService();

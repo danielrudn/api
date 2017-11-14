@@ -31,8 +31,7 @@ class QueueService {
       throw BadRequestError('Track index out of range.');
     }
     if (track.dj.id === user.id) {
-      await RedisService.lset(key, index, 'DELETE');
-      await RedisService.lrem(key, 'DELETE');
+      await RedisService.deleteFromList(key, index);
     } else {
       throw ForbiddenError('You did not add this song to the queue.');
     }
