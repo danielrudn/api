@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import wrap from '../../wrap';
-import { authenticate } from './auth-controller';
+import wrap from '../middleware/async-wrap';
+import { authenticate } from '../middleware/authenticate';
 import { BadCredentialsError, BadRequestError } from '../errors';
 
 const followerRouter = Router();

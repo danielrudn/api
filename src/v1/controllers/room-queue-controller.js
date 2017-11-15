@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import TrackService from '../services/track-service';
 import QueueService from '../services/queue-service';
-import { authenticate } from './auth-controller';
-import wrap from '../../wrap';
+import { authenticate } from '../middleware/authenticate';
+import wrap from '../middleware/async-wrap';
 import { ForbiddenError } from '../errors';
 
 const queueRouter = Router();

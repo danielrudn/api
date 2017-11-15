@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { BadRequestError } from '../errors';
-import wrap from '../../wrap';
+import wrap from '../middleware/async-wrap';
+import { authenticate } from '../middleware/authenticate';
+import verifyPagination from '../middleware/verify-pagination';
 import followers from './room-followers-controller';
 import queue from './room-queue-controller';
-import { authenticate } from './auth-controller';
-import verifyPagination from '../utils/verify-pagination';
 import RoomService from '../services/room-service';
 import QueueService from '../services/queue-service';
 
