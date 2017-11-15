@@ -18,7 +18,7 @@ export default function(sequelize, DataTypes) {
       },
       playType: {
         type: DataTypes.STRING,
-        default: 'public',
+        defaultValue: 'public',
         validate: {
           isIn: {
             args: [['public', 'private']],
@@ -28,7 +28,7 @@ export default function(sequelize, DataTypes) {
       },
       accessType: {
         type: DataTypes.STRING,
-        default: 'public',
+        defaultValue: 'public',
         validate: {
           isIn: {
             args: [['public', 'private']],
@@ -38,7 +38,7 @@ export default function(sequelize, DataTypes) {
       },
       city: {
         type: DataTypes.STRING,
-        default: 'Toronto'
+        defaultValue: 'Toronto'
       },
       currentTrack: {
         type: DataTypes.JSON,
