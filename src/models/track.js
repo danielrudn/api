@@ -51,5 +51,22 @@ export default function(sequelize, DataTypes) {
     }
   );
 
+  Track.associate = models => {
+    Track.belongsToMany(models.Playlist, {
+      through: 'playlist_tracks',
+      as: 'tracks'
+    });
+  };
+
+  Track.createOrUpdate = async args => {
+    let track = await Track.find({ where: { url: args.url } });
+    if (track === null) {
+      track = await Track.create(args);
+    } else {
+      await track.update(args);
+    }
+    return track;
+  };
+
   return Track;
 }

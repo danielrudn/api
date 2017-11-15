@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import TrackService from '../services/track-service';
-import QueueService from '../services/queue-service';
 import { authenticate } from '../middleware/authenticate';
 import wrap from '../middleware/async-wrap';
+import TrackService from '../services/track-service';
+import QueueService from '../services/queue-service';
 import { ForbiddenError } from '../errors';
 
 const queueRouter = Router();
@@ -20,7 +20,7 @@ queueRouter.post(
         'Room play type is set to private. Only the creator can play.'
       );
     }
-    const track = await TrackService.fetchTrack(url);
+    const track = (await TrackService.fetchTrack(url)).toJSON();
     track.dj = { id: req.user.id, username: req.user.username };
     if (req.room.currentTrack === null) {
       await TrackService.playTrack(req.room, track);
@@ -37,7 +37,7 @@ queueRouter.delete(
   wrap(async (req, res) => {
     const { index } = req.params;
     await QueueService.removeTrack(req.room, req.user, index);
-    res.status(204).send();
+    res.status(204).end();
   })
 );
 

@@ -24,3 +24,20 @@ export const authenticate = wrap(async (req, res, next) => {
     throw Errors.AccountNotActivatedError();
   }
 });
+
+export const optionalAuthenticate = wrap(async (req, res, next) => {
+  const authHeader = req.get('Authorization');
+  if (!authHeader || authHeader.match(/Bearer .*[.].*[.].*$/i) === null) {
+    next();
+  } else {
+    const token = authHeader.substring('Bearer '.length);
+    const verifiedUser = TokenService.verifyToken(token);
+    try {
+      req.user = (await UserService.findById(verifiedUser.id)).toJSON();
+      delete req.user.password;
+    } catch (err) {
+    } finally {
+      next();
+    }
+  }
+});

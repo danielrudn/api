@@ -1,0 +1,178 @@
+[
+  {
+    "model": "User",
+    "data": {
+      "id": "playlist_creator_1",
+      "username": "pc1",
+      "email": "playlist_creator_1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 222,
+      "name": "Test Playlist 1",
+      "visibility": "public",
+      "creatorId": "playlist_creator_1"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "playlist_creator_2",
+      "username": "pc2",
+      "email": "playlist_creator_2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Track",
+    "data": {
+      "id": 333,
+      "title": "333",
+      "poster": "333",
+      "artworkUrl": "https://google.ca",
+      "url": "https://google.ca",
+      "duration": 10,
+      "provider": "YouTube"
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 333,
+      "name": "Test Playlist 2",
+      "visibility": "private",
+      "creatorId": "playlist_creator_2",
+      "tracks": [{ "id": 333 }]
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "add_track_test_1",
+      "username": "add_track_test_1",
+      "email": "add_track_test_1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 444,
+      "name": "Test Playlist 3",
+      "visibility": "public",
+      "creatorId": "add_track_test_1"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "add_track_test_2",
+      "username": "add_track_test_2",
+      "email": "add_track_test_2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 555,
+      "name": "Test Playlist 4",
+      "visibility": "private",
+      "creatorId": "add_track_test_2"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "del_track_test_1",
+      "username": "del_track_test_1",
+      "email": "del_track_test_1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 666,
+      "name": "Test Playlist 5",
+      "visibility": "public",
+      "creatorId": "del_track_test_1",
+      "tracks": [{ "id": 333 }]
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "del_track_test_2",
+      "username": "del_track_test_2",
+      "email": "del_track_test_2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 777,
+      "name": "Test Playlist 6",
+      "visibility": "private",
+      "creatorId": "del_track_test_2",
+      "tracks": [{ "id": 333 }]
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "del_playlist_test_1",
+      "username": "del_playlist_1",
+      "email": "del_playlist_test_1@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 888,
+      "name": "Test Playlist 6",
+      "visibility": "private",
+      "creatorId": "del_playlist_test_1"
+    }
+  },
+  {
+    "model": "User",
+    "data": {
+      "id": "del_playlist_test_2",
+      "username": "del_playlist_2",
+      "email": "del_playlist_test_2@ripple.fm",
+      "password": "password",
+      "activated": true,
+      "isGuest": false
+    }
+  },
+  {
+    "model": "Playlist",
+    "data": {
+      "id": 999,
+      "name": "Test Playlist 6",
+      "visibility": "private",
+      "creatorId": "del_playlist_test_2",
+      "tracks": [{ "id": 333 }]
+    }
+  }
+]
