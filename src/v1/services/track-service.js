@@ -7,7 +7,8 @@ import models from '../../models';
 
 class TrackService {
   async fetchTrack(link) {
-    return await fetchTrack(new URL(link));
+    const track = await fetchTrack(new URL(link));
+    return await models.Track.createOrUpdate(track);
   }
 
   async playTrack(room, track) {

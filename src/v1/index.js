@@ -2,12 +2,14 @@ import express from 'express';
 import HttpError from './errors';
 import rooms from './controllers/room-controller';
 import auth from './controllers/auth-controller';
+import playlists from './controllers/playlist-controller';
 import models from '../models';
 
 const router = express.Router();
 
 router.use('/rooms', rooms);
 router.use('/auth', auth);
+router.use('/playlists', playlists);
 
 // Error Handler
 router.use((err, req, res, next) => {
