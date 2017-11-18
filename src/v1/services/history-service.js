@@ -19,7 +19,7 @@ class HistoryService {
     await RedisService.lpush(`rooms:${room.id}:history`, track);
     EventService.emit(events.ROOM_HISTORY_UPDATE, {
       room,
-      history: await getHistory(room)
+      history: await this.getHistory(room)
     });
   }
 }
