@@ -3,6 +3,8 @@ import fetchTrack from './providers/providers';
 import RoomService from './room-service';
 import RedisService from './redis-service';
 import TimerService from './timer-service';
+import EventService from './event-service';
+import events from '../events/events';
 import models from '../../models';
 
 class TrackService {
@@ -20,6 +22,7 @@ class TrackService {
     }
     room.currentTrack = track;
     await room.save();
+    EventService.emit(events.ROOM_CURRENT_TRACK, { room, track });
   }
 
   async onTrackFinish(roomId) {
