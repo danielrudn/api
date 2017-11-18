@@ -7,6 +7,7 @@ import followers from './room-followers-controller';
 import queue from './room-queue-controller';
 import RoomService from '../services/room-service';
 import QueueService from '../services/queue-service';
+import HistoryService from '../services/history-service';
 
 const roomRouter = Router();
 
@@ -32,7 +33,8 @@ roomRouter.get(
     for (let room of result.rows) {
       rooms.push(
         Object.assign(room.toJSON(), {
-          queueLength: await QueueService.getQueueLength(room)
+          queueLength: await QueueService.getQueueLength(room),
+          historyLength: await HistoryService.getHistoryLength(room)
         })
       );
     }
@@ -55,6 +57,7 @@ roomRouter.get(
       room.currentTrack.currentTime = Date.now() - room.currentTrack.timestamp;
     }
     room.queue = await QueueService.getQueue(room);
+    room.history = await HistoryService.getHistory(room);
     res.json(room);
   })
 );

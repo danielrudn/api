@@ -61,6 +61,18 @@ class RedisService {
     });
   }
 
+  lpush(key, value) {
+    return new Promise((resolve, reject) => {
+      this.redis.lpush(key, JSON.stringify(value), (err, res) => {
+        if (err) {
+          reject();
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
   rpush(key, value) {
     return new Promise((resolve, reject) => {
       this.redis.rpush(key, JSON.stringify(value), (err, res) => {

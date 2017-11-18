@@ -3,6 +3,7 @@ import fetchTrack from './providers/providers';
 import RoomService from './room-service';
 import RedisService from './redis-service';
 import TimerService from './timer-service';
+import HistoryService from './history-service';
 import EventService from './event-service';
 import events from '../events/events';
 import models from '../../models';
@@ -27,6 +28,7 @@ class TrackService {
 
   async onTrackFinish(roomId) {
     const room = await RoomService.findById(roomId);
+    HistoryService.addTrack(room, room.currentTrack);
     const nextTrack = await RedisService.lpop(`rooms:${roomId}:queue`);
     await this.playTrack(room, nextTrack);
   }
