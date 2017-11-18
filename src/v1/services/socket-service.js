@@ -45,7 +45,7 @@ class SocketService {
           socket.on('disconnect', () => this.onDisconnect(socket, room, user));
         }
       } catch (err) {
-        socket.emit('error', {
+        this.io.to(socket.uid).emit('error', {
           statusCode: err.statusCode,
           error: err.message
         });
