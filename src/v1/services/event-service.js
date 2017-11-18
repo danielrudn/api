@@ -14,7 +14,17 @@ class EventService {
   }
 
   emit(event, data) {
-    setImmediate(() => this.listeners[event].forEach(cb => cb(data)));
+    setImmediate(() =>
+      this.listeners[event].forEach(async cb => {
+        try {
+          await Promise.resolve(cb(data));
+        } catch (err) {
+          console.error(
+            `[EventService]::emit(${event}, ${data}) ---> err: ${err}`
+          );
+        }
+      })
+    );
   }
 }
 
