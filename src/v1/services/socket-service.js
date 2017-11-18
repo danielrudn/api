@@ -5,7 +5,7 @@ import EventService from './event-service';
 import RoomService from './room-service';
 import TokenService from './token-service';
 import models from '../../models';
-import { BadCredentialsError } from '../errors';
+import { BadCredentialsError, BadRequestError } from '../errors';
 import events from '../events/events';
 
 class SocketService {
@@ -20,12 +20,42 @@ class SocketService {
         server.listen(3000, () => console.log('Listening...'));
       });
     }
-    this.io.on('connection', this.onConnection.bind(this));
+    this.io.on('connection', this.onConnect.bind(this));
   }
 
-  onConnection(socket) {}
+  onConnect(socket) {
+    socket.on('join', async args => {
+      try {
+        const { roomId, accessToken } = args;
+        let user = TokenService.verifyToken(accessToken);
+        if (!user) {
+          throw BadCredentialsError(
+            'Invalid, expired, or missing access token.'
+          );
+        }
+        const room = await RoomService.findById(roomId);
+        if (await room.hasUser(user.id)) {
+          throw BadRequestError('You are already in this room.');
+        } else {
+          socket.join(roomId);
+          EventService.emit(events.ROOM_USER_JOINED, { room, user });
+          socket.on('disconnect', () => this.onDisconnect(socket, room, user));
+        }
+      } catch (err) {
+        socket.emit('error', {
+          statusCode: err.statusCode,
+          error: err.message
+        });
+        socket.disconnect();
+      }
+    });
+  }
 
-  onDisconnect(socket, room, user) {}
+  onDisconnect(socket, room, user) {
+    socket.leave(room.id);
+    socket.removeAllListeners();
+    EventService.emit(events.ROOM_USER_LEFT, { room, user });
+  }
 
   emitToRoom(room, event, data) {
     this.io.to(room.id).emit(event, data);
