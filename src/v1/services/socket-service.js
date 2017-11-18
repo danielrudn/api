@@ -39,6 +39,9 @@ class SocketService {
         } else {
           socket.join(roomId);
           EventService.emit(events.ROOM_USER_JOINED, { room, user });
+          socket.on(events.ROOM_CHAT_MESSAGE, text =>
+            EventService.emit(events.ROOM_CHAT_MESSAGE, { room, user, text })
+          );
           socket.on('disconnect', () => this.onDisconnect(socket, room, user));
         }
       } catch (err) {
