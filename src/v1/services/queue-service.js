@@ -1,4 +1,6 @@
 import RedisService from './redis-service';
+import EventService from './event-service';
+import events from '../events/events';
 import { ForbiddenError, BadRequestError } from '../errors';
 
 class QueueService {
@@ -20,8 +22,17 @@ class QueueService {
     }
   }
 
+  async replaceQueue(room, newQueue) {
+    await RedisService.replaceList(`rooms:${room.id}:queue`, newQueue);
+    EventService.emit(events.ROOM_QUEUE_UPDATE, { room, queue: newQueue });
+  }
+
   async addTrack(room, track) {
     await RedisService.rpush(`rooms:${room.id}:queue`, track);
+    EventService.emit(events.ROOM_QUEUE_UPDATE, {
+      room,
+      queue: await this.getQueue(room)
+    });
   }
 
   async removeTrack(room, user, index) {
@@ -32,6 +43,10 @@ class QueueService {
     }
     if (track.dj.id === user.id) {
       await RedisService.deleteFromList(key, index);
+      EventService.emit(events.ROOM_QUEUE_UPDATE, {
+        room,
+        queue: await this.getQueue(room)
+      });
     } else {
       throw ForbiddenError('You did not add this song to the queue.');
     }

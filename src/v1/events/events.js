@@ -3,5 +3,6 @@ export default {
   ROOM_USER_LEFT: 'room:userLeft',
   ROOM_CHAT_MESSAGE: 'room:chat',
   ROOM_HISTORY_UPDATE: 'room:history',
+  ROOM_QUEUE_UPDATE: 'room:queue',
   ROOM_CURRENT_TRACK: 'room:currentTrack'
 };

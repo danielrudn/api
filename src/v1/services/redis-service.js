@@ -145,6 +145,22 @@ class RedisService {
     });
   }
 
+  replaceList(key, values) {
+    return new Promise((resolve, reject) => {
+      this.redis
+        .multi()
+        .del(key)
+        .rpush(key, values)
+        .exec((err, res) => {
+          if (err) {
+            reject();
+          } else {
+            resolve();
+          }
+        });
+    });
+  }
+
   deleteFromList(key, index) {
     return new Promise((resolve, reject) => {
       this.redis
